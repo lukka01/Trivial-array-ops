@@ -87,6 +87,69 @@ public class Main {
         return res;
     }
 
+//    The Alps
+//    We receive an array arr to check whether this array is alpine.
+//    An alpine array consists a  sequence of strictly
+//    increasing elements to some peak, from where its
+//    elements are strictly decreasing.
+
+    public static boolean alpine(int[] arr) {
+        int max = arr[0];
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if ( max < arr[i] ) {
+                max = arr[i];
+                index++;
+            }
+
+        }
+        for (int i = 0; i < index-1; i++) {
+            if (arr[i] >= arr[i+1])
+                return false;
+        }
+        for (int i = index; i < arr.length-1; i++) {
+            if (arr[i] <= arr[i+1])
+                return false;
+        }
+        return true;
+    }
+
+//    Penguin Giorgi tries to make a fortune as plancton merchant
+//    at the South Pole. For that, he likes to know the optimal time points
+//    when to buy and when to sell plancton. He is lucky in that he may query
+//    from a penguin oracle the prizes
+//    of the coming (max. 30) days. We want to help him to achieve optimal profit.
+
+    public static int[] merchant (int[] arr ) {
+        int[] res = new int[3];
+        int min = arr[0];
+        int minIndex = 0;
+        for (int i = 1; i < arr.length; i++) {
+            if (min > arr[i]) {
+                min = arr[i];
+                minIndex = i;
+            }
+        }
+
+        if (minIndex == arr.length-1) {
+            return new int[]{0,0,0};
+        }
+
+        int max = 0;
+        int maxIndex = 0;
+        for (int i = minIndex; i < arr.length; i++) {
+            if (max < arr[i]) {
+                max = arr[i];
+                maxIndex = i;
+            }
+        }
+        res[0] = minIndex;
+        res[1] = maxIndex;
+        res[2] = max - min;
+        return res;
+
+    }
+
 
 
 
