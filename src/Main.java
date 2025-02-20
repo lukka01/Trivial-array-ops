@@ -66,6 +66,27 @@ public class Main {
         return res;
     }
 
+    public static int[] otherSort(int[] arr1, int[] arr2) {
+        int[] res = new int[arr1.length];
+        boolean[] visited = new boolean[arr1.length];
+        int count = 0;
+
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr1.length; j++) {
+                if (arr1[j] == arr2[i] && !visited[j]) {
+                    res[count++] = arr1[j];
+                    visited[j] = true;
+                }
+            }
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (!visited[i]) {
+                res[count++] = arr1[i];
+            }
+        }
+        return res;
+    }
+
 
 
 
